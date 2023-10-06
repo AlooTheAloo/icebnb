@@ -7,8 +7,15 @@ interface PostCardProps{
 
 function PostCard(props:PostCardProps) {
   return (
-    <div>{props.post.Description}</div>
-  )
+        <div className="h-56 w-[36rem] rounded-xl bg-gradient-to-br from-[#C1C1C1] to-50% transition-all duration-700 p-0.5">
+            <div className="rounded-xl flex h-full w-full bg-[#242424] back">
+                
+                <h1 className="text-2xl font-black text-white">
+                    {props.post.Image.length}
+                </h1>
+            </div>
+        </div>
+    )
 }
 
 export default PostCard
