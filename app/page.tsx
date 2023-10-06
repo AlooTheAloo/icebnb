@@ -1,33 +1,30 @@
 import { useRouter } from 'next/navigation';
-import { getPosts } from '../lib/db/posts';
+import { Post, getPageCount, getPosts } from '../lib/db/posts';
 import HomePageHeader from './components/HomePage/HomePageHeader';
 import TopOptions from './components/global/TopOptions';
 import { useState } from "react";
-
+import PostList from './components/PostList/PostList';
 async function Home({
-  params,
   searchParams,
 }: {
-  params: { slug: string };
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
-  const posts = await getPosts(1)
+  let posts:Post[]|undefined;
+  const page = searchParams?.page;
+  const pageCount = await getPageCount();
+  if(page != undefined && typeof(page) == "string"){ posts = (await(getPosts(parseInt(page))))?.items }
+  else posts = (await getPosts(1))?.items
+  
+  if(posts == undefined) posts = [];
   
   return (
     <div className='min-h-screen h-full w-screen bg'>
-        <TopOptions/>
+      <TopOptions/>
 
       <div className='flex justify-between'>
         <HomePageHeader/>
       </div>
-
-      { 
-        posts?.items.map((x, i) => { 
-          return <div id={`${i}`}>
-              {x.Description}
-            </div>
-        })
-      }
+      <PostList posts={posts} />
     </div>
   )
 }

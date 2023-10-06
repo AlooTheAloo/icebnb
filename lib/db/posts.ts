@@ -3,7 +3,7 @@ import { getAuthEmail, getAuthPassword, pb } from "../connect";
 
 const COLLECTION_NAME = "post";
 
-type post = RecordModel & {
+export type Post = RecordModel & {
     Image:Buffer,
     Name:string,
     Description:string,
@@ -11,7 +11,7 @@ type post = RecordModel & {
 }
 
 export async function getPostByID(id:string){
-    const result = await pb.collection('posts').getOne<post>(id).catch(x => {
+    const result = await pb.collection('posts').getOne<Post>(id).catch(x => {
         return undefined;
     });
 
@@ -20,9 +20,14 @@ export async function getPostByID(id:string){
 
 const POSTS_PER_PAGE = 20;
 export async function getPosts(page:number){
-    const result = await pb.collection('posts').getList<post>(page, POSTS_PER_PAGE).catch(x => {
+    const result = await pb.collection('posts').getList<Post>(page, POSTS_PER_PAGE).catch(x => {
         return undefined;
     });
 
     return result;
+}
+
+export async function getPageCount(){
+    const len = (await pb.collection('posts').getList(1, 1)).totalItems;
+    return Math.ceil(len / POSTS_PER_PAGE);
 }
