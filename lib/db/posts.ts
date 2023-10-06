@@ -16,5 +16,13 @@ export async function getPostByID(id:string){
     });
 
     return result;
+}
 
+const POSTS_PER_PAGE = 20;
+export async function getPosts(page:number){
+    const result = await pb.collection('posts').getList<post>(page, POSTS_PER_PAGE).catch(x => {
+        return undefined;
+    });
+
+    return result;
 }

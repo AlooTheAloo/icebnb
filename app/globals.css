@@ -5,3 +5,7 @@
 .bg{
   background: radial-gradient(85rem 50rem at 5rem 0rem, #1F1F1F 0%, #010101 81.76%, #000 100%);
 }
+
+body{
+  color: white;
+}
