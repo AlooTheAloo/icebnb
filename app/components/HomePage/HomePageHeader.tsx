@@ -6,7 +6,7 @@ function HomePageHeader() {
         <p>
             iceBNB
         </p>
-        <h1 className='text-white  text-6xl leading-tight'>
+        <h1 className='text-6xl leading-tight'>
             Vous cherchez un produit? 
             <br></br>
             Vous le trouverez ici.
