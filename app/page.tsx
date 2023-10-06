@@ -1,11 +1,10 @@
-import Image from 'next/image'
-import Button from '../src/components/Button';
+import HomePageHeader from './components/HomePage/HomePageHeader';
 
 function Home() {
   return (
-    <main>
-      <Button></Button>
-    </main>
+    <div className='h-screen w-screen bg'>
+      <HomePageHeader/>
+    </div>
   )
 }
 
