@@ -13,13 +13,15 @@ export type Post = RecordModel & {
     ItemState:string
 }
 
-export const revalidate = 0;
-
 export async function getPostByID(id:string){
     const result = await pb.collection(COLLECTION_NAME).getOne<Post>(id).catch(x => {
         return undefined;
     });
     
+    if(result == undefined) return undefined;
+
+    result.ImageURL = pb.files.getUrl(result , result.Image);
+
     return result;
 }
 

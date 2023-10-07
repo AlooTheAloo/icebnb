@@ -4,6 +4,7 @@ import TopOptions from './components/global/TopOptions';
 import PostList from './components/PostList/PostList';
 
 export const revalidate = 0;
+export const dynamic = 'force-dynamic'
 
 async function Home({
   searchParams,
