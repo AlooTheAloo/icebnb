@@ -11,8 +11,9 @@ function PostCard(props:PostCardProps) {
             <div className="rounded-xl flex h-full w-full bg-[#242424] back">
                 
                 <h1 className="text-2xl font-black text-white">
-                    {props.post.Image.length}
+
                 </h1>
+                <img src={props.post.ImageURL} className='h-32 max-w-[12rem]'/>
             </div>
         </div>
     )
