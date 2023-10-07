@@ -1,9 +1,10 @@
-import { useRouter } from 'next/navigation';
 import { Post, getPageCount, getPosts } from '../lib/db/posts';
 import HomePageHeader from './components/HomePage/HomePageHeader';
 import TopOptions from './components/global/TopOptions';
-import { useState } from "react";
 import PostList from './components/PostList/PostList';
+
+export const revalidate = 0;
+
 async function Home({
   searchParams,
 }: {

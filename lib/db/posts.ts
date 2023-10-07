@@ -1,8 +1,8 @@
 import { RecordModel } from "pocketbase";
 import { pb } from "../connect";
-import axios from "axios";
 
 const COLLECTION_NAME = "posts";
+
 
 export type Post = RecordModel & {
     Image:string,
@@ -10,7 +10,10 @@ export type Post = RecordModel & {
     Name:string,
     Description:string,
     Price:number,
+    ItemState:string
 }
+
+export const revalidate = 0;
 
 export async function getPostByID(id:string){
     const result = await pb.collection(COLLECTION_NAME).getOne<Post>(id).catch(x => {
@@ -28,6 +31,8 @@ export async function getPosts(page:number){
     });
 
     if(result == undefined) return undefined;
+
+    console.log(result.items.length)
 
     result.items.forEach((element, index) => {
         result.items[index].ImageURL = pb.files.getUrl(element, element.Image);
