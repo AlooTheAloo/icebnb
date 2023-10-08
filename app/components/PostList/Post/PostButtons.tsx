@@ -12,7 +12,9 @@ function PostButtons(props:PostButtonsProps) {
     const router = useRouter();
   return (
     <div className='flex flex-col xs:flex-row h-full items-stretch justify-stretch sm:items-center gap-5'>
-        <BnbButton text="Voir l'annonce" primary={false} onClick={() => { router.push(`/post/${props.postID}`) }}/>
+        <div className='w-[10.7rem]'>
+          <BnbButton text="Voir l'annonce" primary={false} onClick={() => { router.push(`/post/${props.postID}`) }}/>
+        </div>
         <BnbButton text='Contacter le vendeur' primary={true}/>
     </div>
   )

@@ -10,7 +10,8 @@ export type Post = RecordModel & {
     Name:string,
     Description:string,
     Price:number,
-    ItemState:string
+    ItemState:string,
+    user:string
 }
 
 export async function getPostByID(id:string){
@@ -21,7 +22,7 @@ export async function getPostByID(id:string){
     if(result == undefined) return undefined;
 
     result.ImageURL = pb.files.getUrl(result , result.Image);
-
+    console.log(JSON.stringify(result));
     return result;
 }
 
