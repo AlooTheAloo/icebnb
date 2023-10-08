@@ -3,7 +3,9 @@ import { notFound } from 'next/navigation';
 import BnbButton from '../../components/global/BnbButton';
 import TopOptions from '../../components/global/TopOptions';
 import ReturnButton from '../../components/Post/ReturnButton';
-
+import toast, { Toaster } from "react-hot-toast";
+import { isLoggedIn } from '../../global/authmanager';
+import PostInteractButton from '../../components/Post/PostInteractButton';
 export const revalidate = 0;
 export const dynamic = 'force-dynamic'
 
@@ -13,7 +15,7 @@ export default async function Page({ params }: { params: { id: string } }) {
   if(post == undefined) notFound();
 
   return <div className='bg-black w-full h-full min-h-screen'>
-
+    <Toaster/>
     <TopOptions/>
     
     <div className='pt-24 sm:pt-0 flex justify-center items-center w-full h-full min-h-screen'>
@@ -33,9 +35,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                 { post.Description }
               </p>
             </div>
-            <div className='h-20 p-5 flex'>
-              <BnbButton primary={true} text='Acheter' />
-            </div>
+            <PostInteractButton postID={post.id}/>
           </div>
           <div className='sm:w-1/3 w-full max-w-[20rem] p-5 sm:p-0 sm:pr-10 flex items-center justify-center'>
             <img src={ post.ImageURL } className='opacity-100 rounded-xl border-[#131313] border-2'/>

@@ -23,7 +23,7 @@ function PostButtons(props:PostButtonsProps) {
     <div className='flex flex-col xs:flex-row h-full items-stretch justify-stretch sm:items-center gap-5'>
       <Toaster/>
       <>
-        <div className='sm:w-[10.7rem] w-full'>
+        <div className='sm:w-[12rem] w-full'>
           <BnbButton text="Voir l'annonce" primary={false} onClick={() => { router.push(`/post/${props.postID}`) }}/>
         </div>
         {

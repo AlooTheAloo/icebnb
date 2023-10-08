@@ -7,8 +7,9 @@ import { isLoggedIn } from '../../global/authmanager'
 
 function TopOptions() {
   const [loggedIn, setLoggedIn] = useState<boolean|null>(null);
-
+  
   useEffect(() => {
+    console.log("Useeffect topbar");
     setLoggedIn(isLoggedIn());
   }, [])
 

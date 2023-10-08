@@ -47,3 +47,12 @@ export async function getPageCount(){
     const len = (await pb.collection(COLLECTION_NAME).getList(1, 1)).totalItems;
     return Math.ceil(len / POSTS_PER_PAGE);
 }
+
+export async function deletePost(id:string){
+    let retval = true;
+    await pb.collection(COLLECTION_NAME).delete(id).catch(x => {
+        console.log("catched " + x);
+        retval = false;
+    });
+    return retval;
+}

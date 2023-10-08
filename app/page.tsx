@@ -4,7 +4,7 @@ import TopOptions from './components/global/TopOptions';
 import PostList from './components/PostList/PostList';
 
 export const revalidate = 0;
-export const dynamic = 'force-dynamic'
+export const dynamic = 'force-dynamic';
 
 async function Home({
   searchParams,
@@ -16,7 +16,6 @@ async function Home({
   const pageCount = await getPageCount();
   if(page != undefined && typeof(page) == "string"){ posts = (await(getPosts(parseInt(page))))?.items }
   else posts = (await getPosts(1))?.items
-  
   if(posts == undefined) posts = [];
   
   return (

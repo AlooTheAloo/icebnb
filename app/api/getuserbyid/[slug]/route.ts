@@ -6,9 +6,11 @@ export async function GET(
     { params }: { params: { slug: string } }
   ) {
     const slug = params.slug;
-    console.log(await getUserByID(slug));
+    console.log("GET request! with param " + slug);
+
+    const resp = await getUserByID(slug); 
     return NextResponse.json({
-        user : (await getUserByID(slug)) 
+        user : resp 
     })
   }
 

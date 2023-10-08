@@ -6,16 +6,17 @@ import { getUserID, logOut } from '../global/authmanager'
 import { useRouter } from 'next/navigation'
 import { User } from '../../lib/db/users'
 
+export const revalidate = 0;
+
 function Profile() {
     const [user, setUser] = useState<User | null>(null)
+    let isloading = false;
     useEffect(() => {
+        if(isloading) return;
+        isloading = true;
         fetch(`/api/getuserbyid/${getUserID()}`).then(async x => {
-            const json = await x.json()
-            console.log(json);
-            if(json.user == undefined){ 
-                router.push("/");
-            }
-            else setUser(json.user);
+            const res = await x.json();
+            setUser(res.user);
         })
     }, [])
 
@@ -27,7 +28,7 @@ function Profile() {
                 <h1 className='text-2xl font-semibold px-5 pt-5 text-center sm:text-left'>
                     Connecté en tant que { user?.username }
                 </h1>
-                <div className='flex flex-row m-5 gap-5'>
+                <div className='flex flex-col sm:flex-row m-5 gap-5'>
                     <BnbButton primary={true} text='Déconnecter' onClick={() => {
                         logOut();
                         router.push("/")
