@@ -1,13 +1,14 @@
 import { NextRequest, NextResponse } from "next/server"
-import { getUserIDByUsername } from "../../../../lib/db/users";
+import { getUserByID } from "../../../../lib/db/users";
 
 export async function GET(
     request: Request,
     { params }: { params: { slug: string } }
   ) {
     const slug = params.slug;
+    console.log(await getUserByID(slug));
     return NextResponse.json({
-        user : await getUserIDByUsername(slug) 
+        user : (await getUserByID(slug)) 
     })
   }
 

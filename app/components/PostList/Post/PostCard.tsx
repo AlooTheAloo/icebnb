@@ -1,8 +1,6 @@
 import React from 'react'
 import { Post } from '../../../../lib/db/posts'
-import BnbButton from '../../global/BnbButton'
 import PostButtons from './PostButtons'
-import CardWrapper from '../../global/CardWrapper'
 
 interface PostCardProps{ 
     post:Post
@@ -26,7 +24,7 @@ function PostCard(props:PostCardProps) {
                         </p>
                     </div>
                 </div>
-                <PostButtons postID={props.post.id}/>
+                <PostButtons postID={props.post.id} postOwner={props.post.user}/>
             </div>
         </div>
             

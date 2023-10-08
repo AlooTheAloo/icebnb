@@ -34,7 +34,7 @@ export default async function Page({ params }: { params: { id: string } }) {
               </p>
             </div>
             <div className='h-20 p-5 flex'>
-              <BnbButton primary={true} text='Contacter le vendeur' />
+              <BnbButton primary={true} text='Acheter' />
             </div>
           </div>
           <div className='sm:w-1/3 w-full max-w-[20rem] p-5 sm:p-0 sm:pr-10 flex items-center justify-center'>
