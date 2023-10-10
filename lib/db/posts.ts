@@ -22,11 +22,10 @@ export async function getPostByID(id:string){
     if(result == undefined) return undefined;
 
     result.ImageURL = pb.files.getUrl(result , result.Image);
-    console.log(JSON.stringify(result));
     return result;
 }
 
-const POSTS_PER_PAGE = 20;
+const POSTS_PER_PAGE = 6;
 export async function getPosts(page:number){
 
     const result = await pb.collection(COLLECTION_NAME).getList<Post>(page, POSTS_PER_PAGE).catch(x => {
@@ -34,8 +33,6 @@ export async function getPosts(page:number){
     });
 
     if(result == undefined) return undefined;
-
-    console.log(result.items.length)
 
     result.items.forEach((element, index) => {
         result.items[index].ImageURL = pb.files.getUrl(element, element.Image);
@@ -51,7 +48,14 @@ export async function getPageCount(){
 export async function deletePost(id:string){
     let retval = true;
     await pb.collection(COLLECTION_NAME).delete(id).catch(x => {
-        console.log("catched " + x);
+        retval = false;
+    });
+    return retval;
+}
+
+export async function createPost(formData:FormData){
+    let retval = true;
+    await pb.collection(COLLECTION_NAME).create(formData).catch(x => {
         retval = false;
     });
     return retval;

@@ -5,6 +5,7 @@ import BnbButton from '../global/BnbButton'
 import { useRouter } from 'next/navigation'
 import { User } from "../../../lib/db/users";
 import { isLoggedIn, login } from "../../global/authmanager";
+import Inputfield from '../global/InputField';
 
 function LoginInput() {
   const [error, setError] = useState<boolean>(false);
@@ -25,9 +26,8 @@ function LoginInput() {
   return (
     <div className={'p-5 flex flex-col ' + (loggedIn == null ? 'hidden' : '')}>
         Nom d'utilisateur
-        <input className='mt-2 h-12 rounded-lg bg-[#242424] border-2 border-[#121212] px-2 hover:border-[#FFFFFF] transition-all duration-100 ease-out outline-none'
-          onChange={(x) => { setUserName(x.target.value); }}
-        />
+        
+        <Inputfield onChange={(x) => { setUserName(x); }}/>
         
         <div className={"text-red-400 " + (error ? "block" : "hidden")} >
           Cet utilisateur n'existe pas. 

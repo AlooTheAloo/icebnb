@@ -5,11 +5,14 @@ import BnbButton from './BnbButton'
 import { useRouter } from 'next/navigation'
 import { isLoggedIn } from '../../global/authmanager'
 
-function TopOptions() {
+interface TopOptionsProps {
+  showSellOption?:boolean
+}
+
+function TopOptions(props:TopOptionsProps) {
   const [loggedIn, setLoggedIn] = useState<boolean|null>(null);
   
   useEffect(() => {
-    console.log("Useeffect topbar");
     setLoggedIn(isLoggedIn());
   }, [])
 
@@ -21,7 +24,9 @@ function TopOptions() {
         loggedIn == null ? <></> : ( // Waiting for useeffect hook
         loggedIn ? (
           <>
-            <BnbButton primary={false} text='Mettre en vente' onClick={() => { router.push("/sell") }}/>
+            <div className={`${props.showSellOption == false ? "hidden" : ""}`}>
+              <BnbButton primary={false} text='Mettre en vente' onClick={() => { router.push("/sell") }}/>
+            </div>
             <BnbButton primary={true} text='Profil' onClick={() => { router.push("/profile") }}/>
           </>
         ) :

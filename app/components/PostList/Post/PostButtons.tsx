@@ -5,6 +5,7 @@ import BnbButton from '../../global/BnbButton'
 import { useRouter } from 'next/navigation'
 import { getUserID, isLoggedIn } from '../../../global/authmanager'
 import toast, { Toaster } from 'react-hot-toast'
+import { buyJSONData } from '../../../api/buy/route'
 
 interface PostButtonsProps{ 
   postID:string,
@@ -27,13 +28,29 @@ function PostButtons(props:PostButtonsProps) {
           <BnbButton text="Voir l'annonce" primary={false} onClick={() => { router.push(`/post/${props.postID}`) }}/>
         </div>
         {
-          isMine == null ? <></> : (
+          isMine == null ? <></> : ( // loading ismine
             isMine ? 
-             <BnbButton text="Modifier l'annonce" primary={true}/>
+            (
+              <>
+                <BnbButton text="Modifier l'annonce" primary={true}/>
+              </>
+            )
             :
             <BnbButton text="Acheter" primary={true} onClick={() => {
               if(isLoggedIn()){ 
-
+                const data:buyJSONData = { postID: props.postID }
+                fetch("/api/buy", {
+                    method: "POST",
+                    body: JSON.stringify(data)
+                }).then(async x => {
+                    const ok = (await (x.json())).ok;
+                    if(ok == undefined || ok == false){ 
+                      toast.error("Une erreur s'est produite, veuillez réessayer plus tard");
+                    }
+                    else{
+                      router.push("/buy")
+                    }
+                })
               }
               else{ 
                 toast.error("Vous pouvez seulement acheter cet item si vous êtes connectés!", {

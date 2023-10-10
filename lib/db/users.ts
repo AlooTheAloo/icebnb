@@ -23,7 +23,6 @@ export async function getUserByID(id:string){
     const result = await pb.collection(COLLECTION_NAME).getOne<User>(id).catch(x => {
         return undefined;
     });
-    console.log(result);
     if(result == undefined) return undefined;
     return result;
 }

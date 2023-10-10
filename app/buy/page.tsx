@@ -16,6 +16,7 @@ function Buy() {
                 <div className='flex flex-row m-5 gap-5'>
                     <BnbButton primary={true} text='Retour au menu' onClick={() => {
                         router.replace("/")
+                        router.refresh();
                     }}/>
                 </div>
             </div>
