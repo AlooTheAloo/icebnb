@@ -32,7 +32,7 @@ function PostButtons(props:PostButtonsProps) {
             isMine ? 
             (
               <>
-                <BnbButton text="Modifier l'annonce" primary={true}/>
+                <BnbButton text="Modifier l'annonce" primary={true} onClick={() => { router.push(`/modify/${props.postID}`) }}/>
               </>
             )
             :

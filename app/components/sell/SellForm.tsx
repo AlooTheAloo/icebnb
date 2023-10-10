@@ -55,8 +55,7 @@ function SellForm() {
                 </h1>
                 <Inputfield value={ (price ?? "").toString() } onChange={(x) => { 
                     const numb = Number(x);
-                    if(isNaN(numb)) setPrice(null);
-                    else setPrice(numb); 
+                    if(!isNaN(numb)) setPrice(numb); 
                 }}/>
             </div>
                        
@@ -68,7 +67,7 @@ function SellForm() {
             </div>
 
             <div>
-                <FileInput  successText='Fichier téléversé !' text='Téléverser image' onChange={(file) => {
+                <FileInput successText='Fichier téléversé !' text='Téléverser image' onChange={(file) => {
                     if(file != null){ 
                         setFile(file);
                     }

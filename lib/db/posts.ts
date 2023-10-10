@@ -1,5 +1,6 @@
 import { RecordModel } from "pocketbase";
 import { pb } from "../connect";
+import { Truculenta } from "next/font/google";
 
 const COLLECTION_NAME = "posts";
 
@@ -41,6 +42,7 @@ export async function getPosts(page:number){
 }
 
 export async function getPageCount(){
+    console.log("Someone is getting page count .. ");
     const len = (await pb.collection(COLLECTION_NAME).getList(1, 1)).totalItems;
     return Math.ceil(len / POSTS_PER_PAGE);
 }
@@ -59,4 +61,24 @@ export async function createPost(formData:FormData){
         retval = false;
     });
     return retval;
+}
+
+export async function modifyPost(formData:FormData){ 
+    const id = formData.get("ID")?.valueOf();
+    if(typeof(id) != "string") return false;
+    const img = formData.get('Image');
+    if(img == null || img == undefined || img == ""){ 
+        formData.delete("Image");
+    }
+
+
+    let retval = true;
+
+    await pb.collection(COLLECTION_NAME).update(id, formData).catch(x => {
+        retval = false;
+    });
+
+    return retval;
+    
+
 }
