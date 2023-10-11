@@ -8,8 +8,8 @@ interface PostCardProps{
 
 function PostCard(props:PostCardProps) {
   return (
-        <div className="sm:h-56 sm:w-[30rem] rounded-xl bg-gradient-to-br from-[#C1C1C1] to-50% p-[0.1rem]">
-            <div className="rounded-xl flex h-full w-full bg-[#242424] flex-col p-4">
+        <div className="w-full sm:min-h-[14rem] sm:h-fit sm:w-[30rem] rounded-xl bg-gradient-to-br from-[#C1C1C1] to-50% p-[0.1rem]">
+            <div className="rounded-xl flex bg-[#242424] flex-col p-4">
                 <div className='flex flex-col sm:flex-row gap-2'>
                     <img src={props.post.ImageURL} className='sm:h-32 sm:max-w-[12rem] rounded-2xl'/>
                     <div className=' w-full h-full'>

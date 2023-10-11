@@ -15,9 +15,8 @@ function Signup() {
                     <SignupInput/>
                 </div>
             </div>
-
         </div>
-  )
+    )
 }
 
 export default Signup

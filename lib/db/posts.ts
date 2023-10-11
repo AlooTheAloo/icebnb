@@ -28,8 +28,10 @@ export async function getPostByID(id:string){
 
 const POSTS_PER_PAGE = 6;
 export async function getPosts(page:number){
-
-    const result = await pb.collection(COLLECTION_NAME).getList<Post>(page, POSTS_PER_PAGE).catch(x => {
+    const result = await pb.collection(COLLECTION_NAME).getList<Post>(page, POSTS_PER_PAGE, 
+        {
+            sort: "-created"
+        }).catch(x => {
         return undefined;
     });
 

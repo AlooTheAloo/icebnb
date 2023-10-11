@@ -24,7 +24,7 @@ async function Home({
   if(posts == undefined) posts = [];
   
   return (
-    <div className='min-h-screen h-full w-screen bg'>
+    <div className='min-h-screen h-full w-screen bg pb-24'>
       <TopOptions/>
 
       <div className='flex justify-between'>
