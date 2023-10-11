@@ -15,7 +15,7 @@ function PostList(props:PostListProps) {
     )
   }
   else return (
-    <div className='sm:mt-0 mt-5 mx-6 sm:mx-20 flex justify-left flex-wrap gap-10'>
+    <div className='sm:mt-0 mt-5 mx-6 sm:mx-20 flex justify-center flex-wrap gap-10'>
         {props.posts.map((x, i) => <PostCard key={x.id} post={x}/>)}
     </div>
   )
