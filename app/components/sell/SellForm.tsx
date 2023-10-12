@@ -85,7 +85,6 @@ function SellForm() {
                     formdata.append('Image', file);
                     formdata.append('user', getUserID() ?? "");
 
-                    console.log(formdata);
                     const res = await fetch("/api/sell" , {
                         method: "POST",
                         body: formdata
